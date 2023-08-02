@@ -1,0 +1,45 @@
+app_ios_deployment_target = Gem::Version.new('13.0')
+
+platform :ios, app_ios_deployment_target.version
+
+# Let Pods targets inherit deployment target from the app
+# This solution is suggested here: https://github.com/CocoaPods/CocoaPods/issues/4859
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |configuration|
+      pod_ios_deployment_target = Gem::Version.new(configuration.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
+      if pod_ios_deployment_target <= app_ios_deployment_target
+        configuration.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+      end
+    end
+  end
+end
+
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Movies_task' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Movies_task
+	
+   
+# UI-PODS
+		
+    pod 'SDWebImage'
+
+# HELPERs-PODS
+
+    pod 'R.swift'
+    pod 'PromiseKit'
+
+# NETWORK-PODS
+    pod 'Moya/RxSwift'
+    
+  # RX-PODS
+    pod 'RxSwift'
+    pod 'RxCocoa'
+
+
+end
