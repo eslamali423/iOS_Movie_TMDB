@@ -1,7 +1,5 @@
 //
 //  APIConstants.swift
-//  GrandMVVMTemplate
-//
 //  Created by Eslam Ali on 16/10/2022.
 //
 

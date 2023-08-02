@@ -83,15 +83,13 @@
 		282C0AC92A7ABC0700E12EBF /* Movies_task */ = {
 			isa = PBXGroup;
 			children = (
-				282C0ACA2A7ABC0700E12EBF /* AppDelegate.swift */,
-				282C0ACC2A7ABC0700E12EBF /* SceneDelegate.swift */,
-				282C0ACE2A7ABC0700E12EBF /* ViewController.swift */,
-				282C0AD02A7ABC0700E12EBF /* Main.storyboard */,
 				28F434C62A7AC6AE00F6AFCA /* SupportingFiles */,
 				28F434AC2A7ABE6800F6AFCA /* Networking */,
 				282C0AD32A7ABC0A00E12EBF /* Assets.xcassets */,
 				282C0AD52A7ABC0A00E12EBF /* LaunchScreen.storyboard */,
 				282C0AD82A7ABC0A00E12EBF /* Info.plist */,
+				28F434CA2A7AE1D800F6AFCA /* Delegates */,
+				28F434C92A7AE1BF00F6AFCA /* AppFlow */,
 			);
 			path = Movies_task;
 			sourceTree = "<group>";
@@ -126,6 +124,56 @@
 				28F434C72A7AC71A00F6AFCA /* CustomDecoder.swift */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		28F434C92A7AE1BF00F6AFCA /* AppFlow */ = {
+			isa = PBXGroup;
+			children = (
+				28F434CC2A7AE20000F6AFCA /* Artists */,
+			);
+			path = AppFlow;
+			sourceTree = "<group>";
+		};
+		28F434CA2A7AE1D800F6AFCA /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				282C0ACA2A7ABC0700E12EBF /* AppDelegate.swift */,
+				282C0ACC2A7ABC0700E12EBF /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		28F434CC2A7AE20000F6AFCA /* Artists */ = {
+			isa = PBXGroup;
+			children = (
+				28F434CF2A7AE21400F6AFCA /* Model */,
+				28F434CE2A7AE20F00F6AFCA /* ViewModel */,
+				28F434CD2A7AE20B00F6AFCA /* Views */,
+			);
+			path = Artists;
+			sourceTree = "<group>";
+		};
+		28F434CD2A7AE20B00F6AFCA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				282C0ACE2A7ABC0700E12EBF /* ViewController.swift */,
+				282C0AD02A7ABC0700E12EBF /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		28F434CE2A7AE20F00F6AFCA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		28F434CF2A7AE21400F6AFCA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5F4D4378DD62886AC4557094 /* Pods */ = {
