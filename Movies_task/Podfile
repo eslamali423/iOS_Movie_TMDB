@@ -31,7 +31,7 @@ target 'Movies_task' do
 
 # HELPERs-PODS
 
-    pod 'R.swift'
+   # pod 'R.swift'
     pod 'PromiseKit'
 
 # NETWORK-PODS
