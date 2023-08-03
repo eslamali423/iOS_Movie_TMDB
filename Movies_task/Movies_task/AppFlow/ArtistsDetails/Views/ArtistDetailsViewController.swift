@@ -91,9 +91,9 @@ class ArtistDetailsViewController: UIViewController {
             strongSelf.artistBioLabel.text = artist.biography ?? ""
             strongSelf.artistRateLabel.text = "\(artist.popularity ?? 0.0)"
             strongSelf.artistAgeLabel.text = "\(artist.birthday ?? "")"
-            strongSelf.artistGenderLabel.text = "\(artist.gender ?? 1)"
-            
-            if let imageUrl = URL(string: "https://image.tmdb.org/t/p/original/\(artist.profilePath  ?? "")" ) {
+            let gender = ArtistModel.genderType(rawValue: artist.gender ?? 1)
+            strongSelf.artistGenderLabel.text = gender == .male ? ("Male") : ("Female")
+            if let imageUrl = URL(string: "\(APIConstants.manger.imageUrl())\(artist.profilePath  ?? "")" ) {
                 strongSelf.artistImageview.sd_setImage(with: imageUrl)
             }
         }).disposed(by: disposeBag)

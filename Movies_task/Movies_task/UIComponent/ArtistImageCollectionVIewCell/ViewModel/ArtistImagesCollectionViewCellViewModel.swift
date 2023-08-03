@@ -12,7 +12,7 @@ class ArtistImagesCollectionViewCellViewModel {
     let cellModel: ImageModel!
     
     var image: URL? {
-        return URL(string: "https://image.tmdb.org/t/p/original/\(cellModel.file_path ?? "")")
+        return URL(string: "\(APIConstants.manger.imageUrl())\(cellModel.file_path ?? "")")
     }
     
     init(cellModel: ImageModel!) {

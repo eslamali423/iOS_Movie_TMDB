@@ -17,8 +17,7 @@ class ArtistsTableViewCellViewModel {
     }
     
     var image : URL? {
-        return  URL(string: "https://image.tmdb.org/t/p/original/\(cellModel.profilePath ?? "")")
-     //   return URL(string: "\(APIConstants.manger.apiURL())\(cellModel.profilePath ?? "")")
+        return  URL(string: "\(APIConstants.manger.imageUrl())\(cellModel.profilePath ?? "")")
     }
     
     var description : String? {

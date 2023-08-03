@@ -57,7 +57,7 @@ class FullImageViewController: UIViewController {
         scrollView.contentInset = UIEdgeInsets(top: -pageScrollViewYoffset, left: 0, bottom: 0, right: 0)
         
         saveImageButton.layer.cornerRadius = 25
-        if let imageUrl = URL(string: "https://image.tmdb.org/t/p/original/\(fullImageViewModel.profile?.file_path ?? "")") {
+        if let imageUrl = URL(string: "\(APIConstants.manger.imageUrl())\(fullImageViewModel.profile?.file_path ?? "")") {
             imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             imageView.sd_setImage(with: imageUrl)
         }

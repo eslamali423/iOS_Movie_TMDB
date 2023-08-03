@@ -7,6 +7,7 @@ import Foundation
 
 protocol APIConstantsTypes {
     func apiURL() -> String
+    func imageUrl() -> String
     func endPoint(_ name: EndPoints) -> String
 }
 
@@ -19,6 +20,10 @@ public class APIConstants: APIConstantsTypes {
     private func appURL() -> String {
         
         return "https://api.themoviedb.org"
+    }
+    
+    internal func imageUrl() -> String {
+        return "https://image.tmdb.org/t/p/original/"
     }
     
     

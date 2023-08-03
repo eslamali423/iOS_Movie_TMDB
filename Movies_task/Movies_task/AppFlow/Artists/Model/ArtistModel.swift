@@ -13,9 +13,9 @@ import Foundation
 struct ArtistModel: Codable {
     
     
-    enum genderType : String {
-        case male = "male"
-        case female = "female"
+    enum genderType : Int {
+        case male = 2
+        case female = 1
     }
     
     let adult: Bool?

@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8a-g9-ThL">
-                                <rect key="frame" x="-20" y="-20" width="433" height="892"/>
+                                <rect key="frame" x="-20" y="0.0" width="433" height="852"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sq6-dq-oid">
-                                        <rect key="frame" x="0.0" y="0.0" width="433" height="892"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="433" height="852"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -53,8 +53,8 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="leading" secondItem="G8a-g9-ThL" secondAttribute="leading" constant="20" id="SNX-ZR-Vm3"/>
                             <constraint firstItem="G8a-g9-ThL" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="20" id="ZJF-Og-Qj7"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Dtt-Aw-YRi" secondAttribute="trailing" constant="42" id="aEA-NB-LDZ"/>
-                            <constraint firstItem="G8a-g9-ThL" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="54" id="q9t-lj-w3Y"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="top" secondItem="G8a-g9-ThL" secondAttribute="top" constant="79" id="sfo-Wz-BgZ"/>
+                            <constraint firstItem="G8a-g9-ThL" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" id="q9t-lj-w3Y"/>
+                            <constraint firstAttribute="top" secondItem="G8a-g9-ThL" secondAttribute="top" id="sfo-Wz-BgZ"/>
                         </constraints>
                     </view>
                     <connections>
