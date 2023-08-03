@@ -17,9 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sq6-dq-oid">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8a-g9-ThL">
+                                <rect key="frame" x="-20" y="-20" width="433" height="892"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sq6-dq-oid">
+                                        <rect key="frame" x="0.0" y="0.0" width="433" height="892"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="sq6-dq-oid" firstAttribute="width" secondItem="kBA-D2-WWU" secondAttribute="width" id="7QM-NA-i5B"/>
+                                    <constraint firstItem="sq6-dq-oid" firstAttribute="top" secondItem="DGM-fY-J6X" secondAttribute="top" id="IZo-ba-Eip"/>
+                                    <constraint firstItem="sq6-dq-oid" firstAttribute="leading" secondItem="DGM-fY-J6X" secondAttribute="leading" id="Nmy-YU-s8m"/>
+                                    <constraint firstItem="sq6-dq-oid" firstAttribute="trailing" secondItem="DGM-fY-J6X" secondAttribute="trailing" id="SmA-iu-rYn"/>
+                                    <constraint firstItem="sq6-dq-oid" firstAttribute="centerY" secondItem="G8a-g9-ThL" secondAttribute="centerY" id="V7H-eH-bEZ"/>
+                                    <constraint firstItem="sq6-dq-oid" firstAttribute="bottom" secondItem="DGM-fY-J6X" secondAttribute="bottom" id="eKm-hd-SCD"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="DGM-fY-J6X"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="kBA-D2-WWU"/>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dtt-Aw-YRi">
                                 <rect key="frame" x="301" y="726" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -34,17 +49,18 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="sq6-dq-oid" secondAttribute="bottom" id="67e-4a-Hno"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Dtt-Aw-YRi" secondAttribute="bottom" constant="42" id="6G2-oN-PYg"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="sq6-dq-oid" secondAttribute="trailing" id="IuO-2H-3Rg"/>
-                            <constraint firstItem="sq6-dq-oid" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="K6z-Am-jna"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="leading" secondItem="G8a-g9-ThL" secondAttribute="leading" constant="20" id="SNX-ZR-Vm3"/>
+                            <constraint firstItem="G8a-g9-ThL" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="20" id="ZJF-Og-Qj7"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Dtt-Aw-YRi" secondAttribute="trailing" constant="42" id="aEA-NB-LDZ"/>
-                            <constraint firstItem="sq6-dq-oid" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="cQ7-y7-iru"/>
+                            <constraint firstItem="G8a-g9-ThL" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="54" id="q9t-lj-w3Y"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="top" secondItem="G8a-g9-ThL" secondAttribute="top" constant="79" id="sfo-Wz-BgZ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="sq6-dq-oid" id="4DU-en-ZAV"/>
                         <outlet property="saveImageButton" destination="Dtt-Aw-YRi" id="sHu-Ov-nTc"/>
+                        <outlet property="scrollView" destination="G8a-g9-ThL" id="Bmb-ZY-Kzl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

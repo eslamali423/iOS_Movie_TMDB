@@ -14,6 +14,7 @@ class FullImageViewController: UIViewController {
 
     //MARK: - IBOutlets
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var saveImageButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
@@ -26,6 +27,7 @@ class FullImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        configureScrollView()
         subscribeOnSaveImageButtonTap()
     }
     
@@ -40,7 +42,20 @@ class FullImageViewController: UIViewController {
         setupNavigationbar(title: "", titleFont: UIFont.boldSystemFont(ofSize: 16 ), backButtonTitle: "", barTintColor: .clear, tintColor: .systemBlue , titleColor: .black , shadowColor: .clear, shadowImage: UIImage())
     }
     
+    private func configureScrollView(){
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 10.0
+    }
+    
+  
     private func setupViews(){
+        
+        let statusBarHeight = UIApplication.shared.statusBarHeight
+        let navigationBarHeight = navigationController?.navigationBar.frame.size.height ?? 0
+        let pageScrollViewYoffset = statusBarHeight + navigationBarHeight
+        scrollView.contentInset = UIEdgeInsets(top: -pageScrollViewYoffset, left: 0, bottom: 0, right: 0)
+        
         saveImageButton.layer.cornerRadius = 25
         if let imageUrl = URL(string: "https://image.tmdb.org/t/p/original/\(fullImageViewModel.profile?.file_path ?? "")") {
             imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -65,4 +80,11 @@ class FullImageViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
+}
+
+//MARK: - ScrollView Delegate
+extension FullImageViewController :UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
 }
