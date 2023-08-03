@@ -12,4 +12,5 @@ enum EndPoints: String {
     case login = "auth/login"
     
     case artists = "trending/person/day"
+    case person = "person/"
 }

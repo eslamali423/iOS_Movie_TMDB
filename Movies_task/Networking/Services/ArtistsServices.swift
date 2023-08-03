@@ -8,21 +8,27 @@
 import Moya
 
 enum ArtistsServices {
-    case getArtists(page: String)
+    case getArtists(page: Int)
+    case artistDetails(id: Int)
+    case artistImages(id: Int)
 }
 
 extension ArtistsServices: URLRequestBuilder {
     
     var path: String {
         switch self {
-        case .getArtists(page: let page):
+        case .getArtists(_):
             return APIConstants.manger.endPoint(.artists)
+        case .artistDetails(id: let id):
+            return"\(APIConstants.manger.endPoint(.person))\(id)"
+        case .artistImages(id: let id):
+            return"\(APIConstants.manger.endPoint(.person))\(id)/images"
         }
         
     }
     var method: Moya.Method {
         switch self {
-        case .getArtists:
+        case .getArtists, .artistDetails, .artistImages:
             return .get
         
         }
@@ -35,8 +41,12 @@ extension ArtistsServices: URLRequestBuilder {
     
     var task: Task {
         switch self {
-        case .getArtists:
+        case  .artistDetails, .artistImages:
             return .requestPlain
+            
+        case .getArtists(let page) :
+            return .requestParameters(parameters: ["page": page], encoding: URLEncoding.default)
+        
         }
     }
 }

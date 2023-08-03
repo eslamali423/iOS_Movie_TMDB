@@ -20,21 +20,30 @@ class ArtistsViewController: UIViewController {
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationController()
+       
         subscribeViews()
         configureTableView()
         getArtists()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationController()
+    }
+    
     
     //MARK: - Functions
-    
     private func setupNavigationController() {
         setupNavigationbar(title: "Artists", titleFont: UIFont.boldSystemFont(ofSize: 16 ), backButtonTitle: "", barTintColor: UIColor(named: "main_color"), tintColor: .systemBlue , titleColor: .black , shadowColor: .clear, shadowImage: UIImage())
     }
     
     private func getArtists(){
-        artistsViewModel.fetchArtitsData(page: 1)
+        if artistsViewModel.nextPage {
+            artistsViewModel.fetchArtitsData()
+        }else {
+            print("No More")
+        }
+        
     }
     
     private func configureTableView(){
@@ -46,6 +55,7 @@ class ArtistsViewController: UIViewController {
     //MARK: - Subscribe Views
     private func subscribeViews (){
         subscribeOnArtistsListObservable()
+        subscribeOnArtistsTableviewCellTap()
     }
     
     private func subscribeOnArtistsListObservable(){
@@ -53,6 +63,30 @@ class ArtistsViewController: UIViewController {
             artistTableViewCell.cellViewModel = ArtistsTableViewCellViewModel(cellModel: item)
             
         }.disposed(by: disposeBag)
+        
+        
+        artistsTableView.rx.didScroll.subscribe { [weak self] _ in
+              guard let strongSelf = self else { return }
+              let offSetY = strongSelf.artistsTableView.contentOffset.y
+              let contentHeight = strongSelf.artistsTableView.contentSize.height
+
+              if offSetY > (contentHeight - strongSelf.artistsTableView.frame.size.height) {
+                  strongSelf.getArtists()
+              }
+          }
+          .disposed(by: disposeBag)
+        
+        
+    }
+    
+    private func subscribeOnArtistsTableviewCellTap(){
+        artistsTableView.rx.modelSelected(ArtistModel.self).subscribe(onNext: { [weak self] artist in
+            guard let strongSelf = self else {return}
+            guard let vc = UIStoryboard(name: "ArtistDetails", bundle: nil).instantiateViewController(withIdentifier: "ArtistDetailsViewController") as?  ArtistDetailsViewController else {return}
+            
+            vc.artistDetailsViewModel = ArtistDetailsViewModel(artist: artist)
+            strongSelf.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: disposeBag)
     }
     
     

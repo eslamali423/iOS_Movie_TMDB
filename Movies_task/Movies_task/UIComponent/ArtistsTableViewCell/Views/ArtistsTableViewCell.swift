@@ -43,6 +43,7 @@ class ArtistsTableViewCell: UITableViewCell {
         descriptionLabel.text = cellViewModel.description ?? ""
         
         if let imageUrl = cellViewModel.image {
+            profileImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             profileImageView.sd_setImage(with: imageUrl)
         }
     }
