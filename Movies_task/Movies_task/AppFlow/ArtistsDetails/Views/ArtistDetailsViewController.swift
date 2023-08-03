@@ -37,8 +37,7 @@ class ArtistDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         configureCollectionView()
-        subscribeOnArtistObservable()
-        subscribeOnArtistImagesObservable()
+        subscribeViews()
         getArtisstData()
       
         
@@ -76,6 +75,13 @@ class ArtistDetailsViewController: UIViewController {
     }
     
     
+    //MARK: - Subscribe Views
+    private func subscribeViews(){
+        subscribeOnArtistObservable()
+        subscribeOnArtistImagesObservable()
+        subscribeOnArtistImageCollectionViewCellTap()
+    }
+    
     private func subscribeOnArtistObservable(){
         artistDetailsViewModel.artistObservable.subscribe(onNext: { [weak self] artist in
             guard let strongSelf  = self else {return}
@@ -101,4 +107,15 @@ class ArtistDetailsViewController: UIViewController {
             
         }.disposed(by: disposeBag)
     }
+  
+    
+    private func subscribeOnArtistImageCollectionViewCellTap() {
+        imagesCollectionView.rx.modelSelected(ImageModel.self).subscribe(onNext: { [weak self] profile in
+            guard let strongSelf = self else {return}
+            guard  let vc = UIStoryboard(name: "FullImage", bundle: nil).instantiateViewController(withIdentifier: "FullImageViewController") as? FullImageViewController else {return}
+            vc.fullImageViewModel = FullImageViewModel(profile: profile)
+            strongSelf.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: disposeBag)
+    }
+    
 }
