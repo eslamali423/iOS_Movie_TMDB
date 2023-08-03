@@ -23,9 +23,3 @@ struct APIResponseModel : Codable {
     }
 }
 
-
-
-struct ArtiestModel:  Codable {
-    let id : Int?
-    let adult : Int?
-}
