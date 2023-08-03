@@ -64,13 +64,17 @@ class FullImageViewController: UIViewController {
         
     }
     
+    private func downloadImage(image: UIImage){
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(successDownloadImage),nil)
+    }
+    
     private func subscribeOnSaveImageButtonTap(){
         saveImageButton.rx.tap.subscribe(onNext: { [weak self] in
             guard let strongSelf = self else {return}
             let alert = UIAlertController(title: "Download Image", message: "", preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "Download", style: .default, handler: { action in
+                strongSelf.downloadImage(image: strongSelf.imageView.image ?? UIImage() )
                 
-                UIImageWriteToSavedPhotosAlbum(strongSelf.imageView.image ?? UIImage(), strongSelf, nil,nil)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { action in
                 strongSelf.dismiss(animated: true)
@@ -79,6 +83,11 @@ class FullImageViewController: UIViewController {
             
         }).disposed(by: disposeBag)
     }
+    
+    //MARK:- Objc Functions
+    @objc private func successDownloadImage(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        Helper.shared.displayToast(message: "Image Downloaded successfully")
+        }
     
 }
 

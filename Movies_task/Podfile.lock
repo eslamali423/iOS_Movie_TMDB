@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (5.6.2)
+  - Drops (1.4.0)
+  - lottie-ios (3.4.2)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - Moya/RxSwift (15.0.0):
@@ -25,6 +27,8 @@ PODS:
   - SDWebImage/Core (5.13.2)
 
 DEPENDENCIES:
+  - Drops (from `https://github.com/omaralbeik/Drops.git`, tag `1.4.0`)
+  - lottie-ios
   - Moya/RxSwift
   - PromiseKit
   - RxCocoa
@@ -34,6 +38,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - lottie-ios
     - Moya
     - PromiseKit
     - RxCocoa
@@ -41,8 +46,20 @@ SPEC REPOS:
     - RxSwift
     - SDWebImage
 
+EXTERNAL SOURCES:
+  Drops:
+    :git: https://github.com/omaralbeik/Drops.git
+    :tag: 1.4.0
+
+CHECKOUT OPTIONS:
+  Drops:
+    :git: https://github.com/omaralbeik/Drops.git
+    :tag: 1.4.0
+
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  Drops: e0922898e3985a0b9329f388bd9811f9cd9f7dd0
+  lottie-ios: 6bbc53eef6957e4744a50321507015fba72d8ca6
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   PromiseKit: 49d70c53d5d20e346beaea4b276b5dd2ab446bb4
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
@@ -50,6 +67,6 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
 
-PODFILE CHECKSUM: 7153beec2c23b2988667e8cfe84464c1da8bee95
+PODFILE CHECKSUM: fd5faaae908c7d02e1d61bc4aa07e9b833c32221
 
 COCOAPODS: 1.12.1

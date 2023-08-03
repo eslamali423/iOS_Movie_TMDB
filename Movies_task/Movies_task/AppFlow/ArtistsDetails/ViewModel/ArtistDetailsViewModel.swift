@@ -42,6 +42,7 @@ class ArtistDetailsViewModel {
     
     //MARK: - Functions
   func fetchArtitsData(id: Int) {
+      artistLoadingBehavior.onNext(true)
       artistBehavior.onNext(artist!)
           firstly { () -> Promise<Any> in
               return ServicesManager.manger.CallApi(artistsServices, .artistDetails(id: id))
@@ -51,14 +52,17 @@ class ArtistDetailsViewModel {
              guard NetworkHelper.validateResponse(response: result) else{return}
               let responseModel : ArtistModel  = try CustomDecoder.decode(data: result.data)
               strongViewModel.artistBehavior.onNext(responseModel)
-          }).ensure {
-              
+              strongViewModel.artistLoadingBehavior.onNext(false)
+          }).ensure { [weak self] in
+              guard let strongViewModel = self else {return}
+              strongViewModel.artistLoadingBehavior.onNext(false)
           }.catch { (error) in
               print(error.localizedDescription)
           }
       }
 
     func fetchArtitsImages(id: Int) {
+        artistLoadingBehavior.onNext(true)
         artistBehavior.onNext(artist!)
             firstly { () -> Promise<Any> in
                 return ServicesManager.manger.CallApi(artistsServices, .artistImages(id: id))
@@ -68,8 +72,10 @@ class ArtistDetailsViewModel {
                guard NetworkHelper.validateResponse(response: result) else{return}
                 let responseModel : ImageDataModel  = try CustomDecoder.decode(data: result.data)
                 strongViewModel.artistImagesBehavior.onNext(responseModel.profiles ?? [])
-            }).ensure {
-                
+                strongViewModel.artistLoadingBehavior.onNext(false)
+            }).ensure { [weak self] in
+                guard let strongViewModel = self else {return}
+                strongViewModel.artistLoadingBehavior.onNext(false)
             }.catch { (error) in
                 print(error.localizedDescription)
             }

@@ -15,19 +15,15 @@ class ArtistDetailsViewController: UIViewController {
     
     @IBOutlet weak var pageScrollView: UIScrollView!
     @IBOutlet weak var artistImageview: UIImageView!
-    
     @IBOutlet weak var artistNameLabel: UILabel!
-    
     @IBOutlet weak var artistRateLabel: UILabel!
-    
     @IBOutlet weak var artistOrginalLabel: UILabel!
-    
     @IBOutlet weak var artistAgeLabel: UILabel!
     @IBOutlet weak var artistGenderLabel: UILabel!
     @IBOutlet weak var artistTitleLabel: UILabel!
-    
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var artistBioLabel: UILabel!
+    
     //MARK: - Variables
     var artistDetailsViewModel = ArtistDetailsViewModel()
     private let disposeBag = DisposeBag()
@@ -80,6 +76,7 @@ class ArtistDetailsViewController: UIViewController {
         subscribeOnArtistObservable()
         subscribeOnArtistImagesObservable()
         subscribeOnArtistImageCollectionViewCellTap()
+        subscribeOnLoadingObservable()
     }
     
     private func subscribeOnArtistObservable(){
@@ -115,6 +112,16 @@ class ArtistDetailsViewController: UIViewController {
             guard  let vc = UIStoryboard(name: "FullImage", bundle: nil).instantiateViewController(withIdentifier: "FullImageViewController") as? FullImageViewController else {return}
             vc.fullImageViewModel = FullImageViewModel(profile: profile)
             strongSelf.navigationController?.pushViewController(vc, animated: true)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func subscribeOnLoadingObservable(){
+        artistDetailsViewModel.artistLoadingObservable.subscribe(onNext: { isLoading in
+            if isLoading {
+                Loading.manger.show()
+            }else {
+                Loading.manger.dismiss()
+            }
         }).disposed(by: disposeBag)
     }
     

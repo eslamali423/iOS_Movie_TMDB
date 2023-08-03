@@ -28,6 +28,8 @@ target 'Movies_task' do
 # UI-PODS
 		
     pod 'SDWebImage'
+    pod 'Drops', :git => 'https://github.com/omaralbeik/Drops.git', :tag => '1.4.0'
+    pod 'lottie-ios'
 
 # HELPERs-PODS
 

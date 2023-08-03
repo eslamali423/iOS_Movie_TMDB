@@ -56,6 +56,7 @@ class ArtistsViewController: UIViewController {
     private func subscribeViews (){
         subscribeOnArtistsListObservable()
         subscribeOnArtistsTableviewCellTap()
+        subscribeOnLoadingObservable()
     }
     
     private func subscribeOnArtistsListObservable(){
@@ -89,6 +90,14 @@ class ArtistsViewController: UIViewController {
         }).disposed(by: disposeBag)
     }
     
-    
+    private func subscribeOnLoadingObservable(){
+        artistsViewModel.artistsListLoadingObservable.subscribe(onNext: { isLoading in
+            if isLoading {
+                Loading.manger.show()
+            }else {
+                Loading.manger.dismiss()
+            }
+        }).disposed(by: disposeBag)
+    }
 }
 

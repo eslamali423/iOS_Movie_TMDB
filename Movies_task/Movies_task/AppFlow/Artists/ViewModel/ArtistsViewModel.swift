@@ -32,6 +32,7 @@ class ArtistsViewModel {
     
     //MARK: - Funtions
     func fetchArtitsData() {
+        artistsListLoadingBehavior.onNext(true)
           firstly { () -> Promise<Any> in
               return ServicesManager.manger.CallApi(artistsServices, .getArtists(page: currentPage))
           }.done({ [weak self]  response in
@@ -43,6 +44,7 @@ class ArtistsViewModel {
               var list = strongViewModel.artistsListBehavior.value
               list.append(contentsOf: responseModel.results ?? [])
               strongViewModel.artistsListBehavior.accept(list)
+              strongViewModel.artistsListLoadingBehavior.onNext(false)
               guard let totalPage = responseModel.totalPages else {return}
               if totalPage > strongViewModel.currentPage {
                   strongViewModel.currentPage += 1
@@ -50,8 +52,9 @@ class ArtistsViewModel {
               }else {
                   strongViewModel.nextPage = false
               }
-          }).ensure {
-              
+          }).ensure { [weak self ] in
+              guard let strongViewModel = self else {return}
+              strongViewModel.artistsListLoadingBehavior.onNext(false)
           }.catch { (error) in
               print(error.localizedDescription)
           }

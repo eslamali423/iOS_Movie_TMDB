@@ -6,23 +6,26 @@
 
 import Foundation
 import UIKit
+import Drops
 
 
 class Helper {
     static let shared = Helper()
-    
-    func getAppLang() -> String {
-        guard let languageArray = UserDefaults.standard.object(forKey: "AppleLanguages") as? [String] else {return ""}
-        let currentLanguage = languageArray.first!
-        if let hyphenIndex = currentLanguage.firstIndex(of: "-") {
-            return String(currentLanguage[..<hyphenIndex])
-        }else {
-            return currentLanguage
+  
+     func getCurrentViewController() -> UIViewController? {
+        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        guard var topController = keyWindow?.rootViewController else {return nil}
+        while let presentedViewController = topController.presentedViewController {
+            topController = presentedViewController
         }
-        
+        return topController
+    }
+    
+      func displayToast(message : String){
+        let drop = Drop(title:message,titleNumberOfLines: 0 , subtitleNumberOfLines: 0 , accessibility: Drop.Accessibility(message: message))
+        Drops.show(drop)
     }
 }
-
 
 class RightLeftFlowLayout: UICollectionViewFlowLayout {
     override var flipsHorizontallyInOppositeLayoutDirection: Bool {
