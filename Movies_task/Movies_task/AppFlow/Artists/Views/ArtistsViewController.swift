@@ -41,7 +41,7 @@ class ArtistsViewController: UIViewController {
         if artistsViewModel.nextPage {
             artistsViewModel.fetchArtitsData()
         }else {
-            print("No More")
+            Helper.shared.displayToast(message: "No more data to load")
         }
         
     }
