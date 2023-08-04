@@ -1,4 +1,4 @@
-News App iOS Documentaion
+Movies App iOS Documentaion
 
 - Displaying a list of popular people (actors, directors ..etc) with infinite scrolling
 - When a person entry is selected, a Details view is opened with the basic person info and grid view of his/her images
