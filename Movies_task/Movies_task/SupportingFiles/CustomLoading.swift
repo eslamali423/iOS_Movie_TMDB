@@ -22,7 +22,7 @@ final class Loading: LoadingDelegate {
     private init(){}
     
     private var overlayView: UIView!
-    private var animationView: AnimationView?
+    private var animationView: LottieAnimationView?
     
     
    internal func dismiss(){
