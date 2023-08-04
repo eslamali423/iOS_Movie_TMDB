@@ -82,7 +82,7 @@ class ArtistDetailsViewController: UIViewController {
         artistDetailsViewModel.artistObservable.subscribe(onNext: { [weak self] artist in
             guard let strongSelf  = self else {return}
             strongSelf.artistNameLabel.text = artist.name ?? ""
-            strongSelf.artistTitleLabel.text = strongSelf.artistDetailsViewModel.artist?.mediaType ?? ""
+            strongSelf.artistTitleLabel.text = strongSelf.artistDetailsViewModel.artist?.knownForDepartment ?? ""
             strongSelf.artistOrginalLabel.text = strongSelf.artistDetailsViewModel.artist?.originalName ?? ""
             strongSelf.artistBioLabel.text = artist.biography ?? ""
             strongSelf.artistRateLabel.text = "\(artist.popularity ?? 0.0)"

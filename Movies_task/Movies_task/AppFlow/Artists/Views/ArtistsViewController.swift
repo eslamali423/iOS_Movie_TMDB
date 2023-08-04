@@ -16,13 +16,14 @@ class ArtistsViewController: UIViewController {
     //MARK: - Variables
     let artistsViewModel = ArtistsViewModel()
     private let disposeBag = DisposeBag()
-    
+   
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
        
         subscribeViews()
         configureTableView()
+     
         getArtists()
     }
     
@@ -42,16 +43,16 @@ class ArtistsViewController: UIViewController {
             artistsViewModel.fetchArtitsData()
         }else {
             Helper.shared.displayToast(message: "No more data to load")
-            
         }
-        
     }
     
     private func configureTableView(){
         artistsTableView.register(R.nib.artistsTableViewCell)
         artistsTableView.separatorStyle = .none
+        artistsTableView.rx.setDelegate(self)
         
     }
+  
     
     //MARK: - Subscribe Views
     private func subscribeViews (){
@@ -67,16 +68,16 @@ class ArtistsViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         
-        artistsTableView.rx.didScroll.subscribe { [weak self] _ in
-              guard let strongSelf = self else { return }
-              let offSetY = strongSelf.artistsTableView.contentOffset.y
-              let contentHeight = strongSelf.artistsTableView.contentSize.height
-
-              if offSetY > (contentHeight - strongSelf.artistsTableView.frame.size.height) {
-                  strongSelf.getArtists()
-              }
-          }
-          .disposed(by: disposeBag)
+//        artistsTableView.rx.didScroll.subscribe { [weak self] _ in
+//              guard let strongSelf = self else { return }
+//              let offSetY = strongSelf.artistsTableView.contentOffset.y
+//              let contentHeight = strongSelf.artistsTableView.contentSize.height
+//
+//              if offSetY > (contentHeight - strongSelf.artistsTableView.frame.size.height) {
+//                //  strongSelf.getArtists()
+//              }
+//          }
+//          .disposed(by: disposeBag)
         
         
     }
@@ -102,3 +103,29 @@ class ArtistsViewController: UIViewController {
     }
 }
 
+//MARK: - ScrollView Delegatee
+extension ArtistsViewController : UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.bounces = scrollView.contentOffset.y > 10
+    }
+    
+    // this function to detect if scroll view get the end or not and fethcing more data form API
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offset = scrollView.contentOffset
+        let bounds = scrollView.bounds
+        let size = scrollView.contentSize
+        let inset = scrollView.contentInset
+        
+        let y = offset.y + bounds.size.height - inset.bottom
+        let h = size.height
+        
+        let reloadDistance = CGFloat(30.0)
+        if y > h + reloadDistance {
+          
+            //  TODO:- call method to get more date here then  stop spinner animation
+            if artistsViewModel.nextPage {
+                getArtists()
+            }
+        }
+    }
+}
