@@ -65,8 +65,7 @@ class ArtistDetailsViewController: UIViewController {
     }
     
     private func configureCollectionView(){
-        imagesCollectionView.register(UINib(nibName: "ArtistImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ArtistImagesCollectionViewCell")
-       
+        imagesCollectionView.register(R.nib.artistImagesCollectionViewCell)
         imagesCollectionView.formatingCollectionView(topPadding: 0, rightPadding: 0, leftPadding: 0, bottomPadding: 0, width: imagesCollectionView.frame.height , height: imagesCollectionView.frame.height, minimumInteritemSpacing: 0, minimumLineSpacing: 0, scrollDirection: .horizontal)
     }
     
@@ -99,7 +98,7 @@ class ArtistDetailsViewController: UIViewController {
     
     
     private func subscribeOnArtistImagesObservable(){
-        artistDetailsViewModel.artistImageObservable.bind(to: imagesCollectionView.rx.items(cellIdentifier: "ArtistImagesCollectionViewCell", cellType: ArtistImagesCollectionViewCell.self)) {row,item, artistImageCollectionViewCell in
+        artistDetailsViewModel.artistImageObservable.bind(to: imagesCollectionView.rx.items(cellIdentifier: R.reuseIdentifier.artistImagesCollectionViewCell.identifier, cellType: ArtistImagesCollectionViewCell.self)) {row,item, artistImageCollectionViewCell in
             artistImageCollectionViewCell.cellViewModel = ArtistImagesCollectionViewCellViewModel(cellModel: item)
             
         }.disposed(by: disposeBag)
@@ -109,7 +108,7 @@ class ArtistDetailsViewController: UIViewController {
     private func subscribeOnArtistImageCollectionViewCellTap() {
         imagesCollectionView.rx.modelSelected(ImageModel.self).subscribe(onNext: { [weak self] profile in
             guard let strongSelf = self else {return}
-            guard  let vc = UIStoryboard(name: "FullImage", bundle: nil).instantiateViewController(withIdentifier: "FullImageViewController") as? FullImageViewController else {return}
+            let vc = R.storyboard.fullImage.fullImageViewController()!
             vc.fullImageViewModel = FullImageViewModel(profile: profile)
             strongSelf.navigationController?.pushViewController(vc, animated: true)
         }).disposed(by: disposeBag)

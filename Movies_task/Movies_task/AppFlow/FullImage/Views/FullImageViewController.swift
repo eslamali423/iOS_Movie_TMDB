@@ -75,7 +75,7 @@ class FullImageViewController: UIViewController {
     private func subscribeOnSaveImageButtonTap(){
         saveImageButton.rx.tap.subscribe(onNext: { [weak self] in
             guard let strongSelf = self else {return}
-            let alert = UIAlertController(title: "Download Image", message: "", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Download Image" , message: "", preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "Download", style: .default, handler: { action in
                 strongSelf.downloadImage(image: strongSelf.imageView.image ?? UIImage() )
                 

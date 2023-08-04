@@ -34,7 +34,7 @@ class ArtistsViewController: UIViewController {
     
     //MARK: - Functions
     private func setupNavigationController() {
-        setupNavigationbar(title: "Artists", titleFont: UIFont.boldSystemFont(ofSize: 16 ), backButtonTitle: "", barTintColor: UIColor(named: "main_color"), tintColor: .systemBlue , titleColor: .black , shadowColor: .clear, shadowImage: UIImage())
+        setupNavigationbar(title: "Artists", titleFont: UIFont.boldSystemFont(ofSize: 16 ), backButtonTitle: "", barTintColor: R.color.main_color(), tintColor: .systemBlue , titleColor: .black , shadowColor: .clear, shadowImage: UIImage())
     }
     
     private func getArtists(){
@@ -42,12 +42,13 @@ class ArtistsViewController: UIViewController {
             artistsViewModel.fetchArtitsData()
         }else {
             Helper.shared.displayToast(message: "No more data to load")
+            
         }
         
     }
     
     private func configureTableView(){
-        artistsTableView.register(UINib(nibName: "ArtistsTableViewCell", bundle: nil), forCellReuseIdentifier: "ArtistsTableViewCell")
+        artistsTableView.register(R.nib.artistsTableViewCell)
         artistsTableView.separatorStyle = .none
         
     }
@@ -60,7 +61,7 @@ class ArtistsViewController: UIViewController {
     }
     
     private func subscribeOnArtistsListObservable(){
-        artistsViewModel.artistsListObservable.bind(to: artistsTableView.rx.items(cellIdentifier: "ArtistsTableViewCell", cellType: ArtistsTableViewCell.self)) {row,item, artistTableViewCell in
+        artistsViewModel.artistsListObservable.bind(to: artistsTableView.rx.items(cellIdentifier: R.reuseIdentifier.artistsTableViewCell.identifier, cellType: ArtistsTableViewCell.self)) {row,item, artistTableViewCell in
             artistTableViewCell.cellViewModel = ArtistsTableViewCellViewModel(cellModel: item)
             
         }.disposed(by: disposeBag)
@@ -83,8 +84,8 @@ class ArtistsViewController: UIViewController {
     private func subscribeOnArtistsTableviewCellTap(){
         artistsTableView.rx.modelSelected(ArtistModel.self).subscribe(onNext: { [weak self] artist in
             guard let strongSelf = self else {return}
-            guard let vc = UIStoryboard(name: "ArtistDetails", bundle: nil).instantiateViewController(withIdentifier: "ArtistDetailsViewController") as?  ArtistDetailsViewController else {return}
-            
+             let vc = R.storyboard.artistDetails.artistDetailsViewController()!
+                  
             vc.artistDetailsViewModel = ArtistDetailsViewModel(artist: artist)
             strongSelf.navigationController?.pushViewController(vc, animated: true)
         }).disposed(by: disposeBag)
