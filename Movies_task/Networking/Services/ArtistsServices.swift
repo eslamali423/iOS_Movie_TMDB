@@ -22,7 +22,7 @@ extension ArtistsServices: URLRequestBuilder {
         case .artistDetails(id: let id):
             return"\(APIConstants.manger.endPoint(.person))\(id)"
         case .artistImages(id: let id):
-            return"\(APIConstants.manger.endPoint(.person))\(id)/images"
+            return"\(APIConstants.manger.endPoint(.person))\(id)\(APIConstants.manger.endPoint(.images))"
         }
         
     }

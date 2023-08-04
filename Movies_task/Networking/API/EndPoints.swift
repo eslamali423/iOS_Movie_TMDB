@@ -13,4 +13,5 @@ enum EndPoints: String {
     
     case artists = "trending/person/day"
     case person = "person/"
+    case images = "/images"
 }
