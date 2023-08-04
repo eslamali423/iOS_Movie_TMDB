@@ -7,6 +7,7 @@ Movies App iOS Documentaion
 - MVVM as an architecture design pattern
 - RxSwift: binding data and UI visual elements in any propagation of change
 - Moya Network Layer with Generics Codable Models for parsing JSON
+- PromisKit for handling all asynchrony tasks
 - Rswift to get a strong reference of resources
 
 ---------
