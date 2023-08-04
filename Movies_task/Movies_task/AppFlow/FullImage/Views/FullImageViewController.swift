@@ -57,6 +57,10 @@ class FullImageViewController: UIViewController {
         scrollView.contentInset = UIEdgeInsets(top: -pageScrollViewYoffset, left: 0, bottom: 0, right: 0)
         
         saveImageButton.layer.cornerRadius = 25
+        saveImageButton.layer.shadowColor = UIColor.systemGray6.cgColor
+        saveImageButton.layer.shadowOpacity = 0.1
+        saveImageButton.layer.shadowRadius = 2
+        
         if let imageUrl = URL(string: "\(APIConstants.manger.imageUrl())\(fullImageViewModel.profile?.file_path ?? "")") {
             imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
             imageView.sd_setImage(with: imageUrl)

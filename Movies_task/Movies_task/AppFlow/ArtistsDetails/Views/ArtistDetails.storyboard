@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="rzP-oO-5XH">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1188"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1220"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUR-rC-Pig">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
@@ -149,6 +149,7 @@
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="figure.dress.line.vertical.figure" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mKU-T7-7cf">
                                                                         <rect key="frame" x="0.0" y="-0.66666666666666785" width="20" height="29.666666666666668"/>
+                                                                        <color key="tintColor" name="second_color"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="eAt-cp-SbL"/>
                                                                         </constraints>
@@ -166,6 +167,7 @@
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar.badge.clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ONL-rB-h0h">
                                                                         <rect key="frame" x="0.0" y="1.6666666666666661" width="21.333333333333332" height="26.666666666666671"/>
+                                                                        <color key="tintColor" name="second_color"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="9Lq-F6-sNc"/>
                                                                         </constraints>
@@ -191,10 +193,31 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rT-zJ-OaA">
-                                                <rect key="frame" x="0.0" y="528" width="393" height="128"/>
+                                                <rect key="frame" x="0.0" y="528" width="393" height="160"/>
                                                 <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="udJ-fQ-jFd">
+                                                        <rect key="frame" x="16" y="8" width="81" height="20"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.on.rectangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PB7-Ew-2cw">
+                                                                <rect key="frame" x="0.0" y="0.66666666666666607" width="20" height="18.666666666666671"/>
+                                                                <color key="tintColor" name="second_color"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="20" id="yNF-0L-uDX"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2t-ta-ff2">
+                                                                <rect key="frame" x="28" y="0.0" width="53" height="20"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="aP5-RF-Ujr"/>
+                                                        </constraints>
+                                                    </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="na6-yv-nPY">
-                                                        <rect key="frame" x="16" y="16" width="361" height="96"/>
+                                                        <rect key="frame" x="16" y="44" width="361" height="100"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lm0-tU-sgE">
                                                             <size key="itemSize" width="128" height="128"/>
@@ -209,13 +232,15 @@
                                                 <constraints>
                                                     <constraint firstItem="na6-yv-nPY" firstAttribute="leading" secondItem="8rT-zJ-OaA" secondAttribute="leading" constant="16" id="BWu-id-tLI"/>
                                                     <constraint firstAttribute="bottom" secondItem="na6-yv-nPY" secondAttribute="bottom" constant="16" id="EkI-me-Fz1"/>
-                                                    <constraint firstItem="na6-yv-nPY" firstAttribute="top" secondItem="8rT-zJ-OaA" secondAttribute="top" constant="16" id="T0x-ba-IYl"/>
-                                                    <constraint firstAttribute="height" constant="128" id="gBZ-Yn-yf5"/>
+                                                    <constraint firstItem="na6-yv-nPY" firstAttribute="top" secondItem="udJ-fQ-jFd" secondAttribute="bottom" constant="16" id="Tct-DO-FG3"/>
+                                                    <constraint firstAttribute="height" constant="160" id="gBZ-Yn-yf5"/>
                                                     <constraint firstAttribute="trailing" secondItem="na6-yv-nPY" secondAttribute="trailing" constant="16" id="gWQ-uW-IBp"/>
+                                                    <constraint firstItem="udJ-fQ-jFd" firstAttribute="top" secondItem="8rT-zJ-OaA" secondAttribute="top" constant="8" id="x1A-KU-8rf"/>
+                                                    <constraint firstItem="udJ-fQ-jFd" firstAttribute="leading" secondItem="8rT-zJ-OaA" secondAttribute="leading" constant="16" id="ysM-sV-iYT"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lei-hj-t1B">
-                                                <rect key="frame" x="0.0" y="656" width="393" height="532"/>
+                                                <rect key="frame" x="0.0" y="688" width="393" height="532"/>
                                                 <color key="backgroundColor" name="main_color"/>
                                             </view>
                                         </subviews>
@@ -263,9 +288,13 @@
     <resources>
         <image name="calendar.badge.clock" catalog="system" width="128" height="108"/>
         <image name="figure.dress.line.vertical.figure" catalog="system" width="128" height="105"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="main_color">
             <color red="0.94117647058823528" green="0.97254901960784312" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="second_color">
+            <color red="0.0" green="0.25490196078431371" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
