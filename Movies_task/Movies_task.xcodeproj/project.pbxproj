@@ -60,7 +60,7 @@
 		282C0AD32A7ABC0A00E12EBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		282C0AD62A7ABC0A00E12EBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		282C0AD82A7ABC0A00E12EBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		28D712FA2A7CC5C8001211CB /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = Movies_task/Resources/R.generated.swift; sourceTree = SOURCE_ROOT; };
+		28D712FA2A7CC5C8001211CB /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = Movies_task/R.generated.swift; sourceTree = SOURCE_ROOT; };
 		28DDB8682A7C46CB00E88809 /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
 		28DDB86A2A7C470F00E88809 /* CustomLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoading.swift; sourceTree = "<group>"; };
 		28E290602A7C294F00B60CA1 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -131,6 +131,7 @@
 		282C0AC92A7ABC0700E12EBF /* Movies_task */ = {
 			isa = PBXGroup;
 			children = (
+				28D712FA2A7CC5C8001211CB /* R.generated.swift */,
 				28D712FC2A7CC67D001211CB /* Resources */,
 				28DDB8672A7C46B500E88809 /* Lottie */,
 				28F434C62A7AC6AE00F6AFCA /* SupportingFiles */,
@@ -148,7 +149,6 @@
 		28D712FC2A7CC67D001211CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				28D712FA2A7CC5C8001211CB /* R.generated.swift */,
 				282C0AD32A7ABC0A00E12EBF /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -491,7 +491,7 @@
 				"",
 			);
 			outputPaths = (
-				$SRCROOT/Movies_task/Resources/R.generated.swift,
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
